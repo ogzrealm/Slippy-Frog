@@ -7,13 +7,11 @@ public class PlayerControl : MonoBehaviour
     private InputAction moveAction;
     private Rigidbody2D _rb;
     [SerializeField] private float moveSpeed;
-    private float baseMoveSpeed;
     [SerializeField] private float torqueStr=1f;
     
 
     private void Start()
     {
-        baseMoveSpeed = moveSpeed;
         moveAction=InputSystem.actions.FindAction("Move");
         _rb=GetComponent<Rigidbody2D>();
     }
@@ -36,14 +34,5 @@ public class PlayerControl : MonoBehaviour
             _rb.AddTorque(-torqueStr);
         }
     }
-
-    public void setMoveSpeed(float moveSpeed)
-    {
-        this.moveSpeed=moveSpeed;
-    }
-
-    public void resetMoveSpeed()
-    {
-        moveSpeed=baseMoveSpeed;
-    }
+    
 }

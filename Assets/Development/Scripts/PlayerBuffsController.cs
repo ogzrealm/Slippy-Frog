@@ -8,9 +8,11 @@ public class PlayerBuffsController : MonoBehaviour
     
     [SerializeField] private GameObject ground;
     [SerializeField] private PlayerControl playercont;
+    [SerializeField] private SurfaceEffector2D surfaceEffector;
+    private float currentMoveSpeed;
     private void Start()
     {
-        
+        currentMoveSpeed = surfaceEffector.speed;
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -24,9 +26,19 @@ public class PlayerBuffsController : MonoBehaviour
 
     IEnumerator PowerUpTimer(float moveSpeed, float time)
     {
-        playercont.setMoveSpeed(moveSpeed);
+        SetMoveSpeed(moveSpeed);
         yield return new WaitForSeconds(time);
-        playercont.resetMoveSpeed();
+        ResetMoveSpeed();
+    }
+
+    private void SetMoveSpeed(float moveSpeed)
+    {
+        surfaceEffector.speed = moveSpeed;
+    }
+
+    private void ResetMoveSpeed()
+    {
+        surfaceEffector.speed = currentMoveSpeed;
     }
     
 }

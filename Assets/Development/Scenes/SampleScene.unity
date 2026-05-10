@@ -849,6 +849,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PlayerBuffsController
   ground: {fileID: 2131979820}
   playercont: {fileID: 1807208773}
+  surfaceEffector: {fileID: 2131979825}
 --- !u!70 &1807208778
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
