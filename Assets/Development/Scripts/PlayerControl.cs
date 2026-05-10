@@ -1,4 +1,3 @@
-using System;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -8,17 +7,24 @@ public class PlayerControl : MonoBehaviour
     private Rigidbody2D _rb;
     [SerializeField] private float moveSpeed;
     [SerializeField] private float torqueStr=1f;
+    private float baseTorque;
+    private float currentRotation;
+    private float previousRotation;
+    private float totalRotation;
+    private int flips;
     
 
     private void Start()
     {
         moveAction=InputSystem.actions.FindAction("Move");
         _rb=GetComponent<Rigidbody2D>();
+        baseTorque = torqueStr;
     }
 
     private void Update()
     {
         Movement();
+        FlipTracker();
     }
 
     private void Movement()
@@ -33,6 +39,32 @@ public class PlayerControl : MonoBehaviour
         {
             _rb.AddTorque(-torqueStr);
         }
+    }
+
+    public void SetNewTorque(float torque)
+    {
+        torqueStr = torque;
+    }
+
+    public void ResetTorque()
+    {
+        torqueStr = baseTorque;
+    }
+    
+    private void FlipTracker()
+    {
+        currentRotation = transform.rotation.eulerAngles.z;
+        totalRotation += Mathf.DeltaAngle(previousRotation, currentRotation);
+        if (totalRotation > 360 || totalRotation < -360)
+        {
+            flips++;
+            totalRotation = 0;
+            Debug.Log(flips);
+        }
+        
+        previousRotation = currentRotation;
+        
+
     }
     
 }

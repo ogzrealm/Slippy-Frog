@@ -18,9 +18,13 @@ public class PlayerBuffsController : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D other)
     {
         PowerUpItem item = other.GetComponent<PowerUpItem>();
-        if (item != null)
+        if (item != null && item._powerUp.powerName=="Speed")
         {
             StartCoroutine(PowerUpTimer(item._powerUp.powerBoost,item._powerUp.powerTime));
+        }
+        else if (item != null && item._powerUp.powerName == "Torque")
+        {
+            StartCoroutine(TorqueTimer(item._powerUp.powerBoost,item._powerUp.powerTime));
         }
     }
 
@@ -31,6 +35,13 @@ public class PlayerBuffsController : MonoBehaviour
         ResetMoveSpeed();
     }
 
+    IEnumerator TorqueTimer(float torque, float time)
+    {
+        SetTorqueStr(torque);
+        yield return new WaitForSeconds(time);
+        ResetTorqueStr();
+    }
+
     private void SetMoveSpeed(float moveSpeed)
     {
         surfaceEffector.speed = moveSpeed;
@@ -39,6 +50,16 @@ public class PlayerBuffsController : MonoBehaviour
     private void ResetMoveSpeed()
     {
         surfaceEffector.speed = currentMoveSpeed;
+    }
+
+    public void SetTorqueStr(float torque)
+    {
+        playercont.SetNewTorque(torque);
+    }
+
+    public void ResetTorqueStr()
+    {
+        playercont.ResetTorque();
     }
     
 }

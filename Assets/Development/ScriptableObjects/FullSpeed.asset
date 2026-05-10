@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp_SO
   powerUpColor: {r: 0.78431374, g: 0.44313726, b: 0.44313726, a: 1}
   powerName: Speed
-  powerBoost: 3
+  powerBoost: 25
   powerTime: 5
