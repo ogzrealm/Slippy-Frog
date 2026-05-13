@@ -20,11 +20,14 @@ public class PlayerBuffsController : MonoBehaviour
         PowerUpItem item = other.GetComponent<PowerUpItem>();
         if (item != null && item._powerUp.powerName=="Speed")
         {
+            Destroy(other.gameObject);
             StartCoroutine(PowerUpTimer(item._powerUp.powerBoost,item._powerUp.powerTime));
         }
         else if (item != null && item._powerUp.powerName == "Torque")
         {
+            Destroy(other.gameObject);
             StartCoroutine(TorqueTimer(item._powerUp.powerBoost,item._powerUp.powerTime));
+            
         }
     }
 

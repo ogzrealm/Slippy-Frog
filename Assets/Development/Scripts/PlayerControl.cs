@@ -1,3 +1,5 @@
+using System;
+using Unity.Cinemachine;
 using UnityEngine;
 using UnityEngine.InputSystem;
 
@@ -5,7 +7,6 @@ public class PlayerControl : MonoBehaviour
 {
     private InputAction moveAction;
     private Rigidbody2D _rb;
-    [SerializeField] private float moveSpeed;
     [SerializeField] private float torqueStr=1f;
     private float baseTorque;
     private float currentRotation;
@@ -58,13 +59,21 @@ public class PlayerControl : MonoBehaviour
         if (totalRotation > 360 || totalRotation < -360)
         {
             flips++;
+            UIManager.instance.addScore(flips*1000);
             totalRotation = 0;
             Debug.Log(flips);
+            
         }
         
         previousRotation = currentRotation;
-        
 
     }
-    
+
+    private void OnCollisionEnter2D(Collision2D other) //Debugging for flip bug
+    {
+        if (other.gameObject.tag == "Ground")
+        {
+            totalRotation = 0;
+        }
+    }
 }
