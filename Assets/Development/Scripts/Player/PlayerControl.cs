@@ -13,6 +13,7 @@ public class PlayerControl : MonoBehaviour
     private float previousRotation;
     private float totalRotation;
     private int flips;
+    private bool isPlayerCanRotate = true;
     
 
     private void Start()
@@ -30,16 +31,20 @@ public class PlayerControl : MonoBehaviour
 
     private void Movement()
     {
-        Vector2 moveVector=moveAction.ReadValue<Vector2>();
+        if (isPlayerCanRotate)
+        {
+            Vector2 moveVector=moveAction.ReadValue<Vector2>();
 
-        if (moveVector.x < 0)
-        {
-            _rb.AddTorque(torqueStr);
+            if (moveVector.x < 0)
+            {
+                _rb.AddTorque(torqueStr);
+            }
+            else if (moveVector.x > 0)
+            {
+                _rb.AddTorque(-torqueStr);
+            } 
         }
-        else if (moveVector.x > 0)
-        {
-            _rb.AddTorque(-torqueStr);
-        }
+        
     }
 
     public void SetNewTorque(float torque)
@@ -67,6 +72,16 @@ public class PlayerControl : MonoBehaviour
         
         previousRotation = currentRotation;
 
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Ground"))
+        {
+            isPlayerCanRotate = false;
+            GameManager.instance.GameOver();
+        }
+        
     }
 
     private void OnCollisionEnter2D(Collision2D other) //Debugging for flip bug
