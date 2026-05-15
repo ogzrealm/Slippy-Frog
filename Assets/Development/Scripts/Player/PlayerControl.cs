@@ -13,7 +13,7 @@ public class PlayerControl : MonoBehaviour
     private float previousRotation;
     private float totalRotation;
     private int flips;
-    private bool isPlayerCanRotate = true;
+    [HideInInspector] public bool isPlayerCanRotate = true;
     
 
     private void Start()
@@ -64,10 +64,9 @@ public class PlayerControl : MonoBehaviour
         if (totalRotation > 360 || totalRotation < -360)
         {
             flips++;
+            AudioController.instance.PlayFlipEffect();
             UIManager.instance.addScore(flips*1000);
             totalRotation = 0;
-            Debug.Log(flips);
-            
         }
         
         previousRotation = currentRotation;

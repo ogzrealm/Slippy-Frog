@@ -6,6 +6,7 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager instance;
     [SerializeField] private SurfaceEffector2D surfaceEffector2D;
+    private AudioSource _audioSource;
     private void Awake()
     {
         if(instance!=null) 
@@ -16,6 +17,11 @@ public class GameManager : MonoBehaviour
         instance = this;
     }
 
+    private void Start()
+    {
+        _audioSource = GetComponent<AudioSource>();
+    }
+
     public void FinishLevel()
     {
         StartCoroutine(FinishLevelCoroutine());
@@ -24,6 +30,7 @@ public class GameManager : MonoBehaviour
     IEnumerator FinishLevelCoroutine()
     {
         surfaceEffector2D.speed = 0;
+        
         yield return new WaitForSeconds(1);
         Debug.Log("Next Level");
     }
@@ -37,6 +44,7 @@ public class GameManager : MonoBehaviour
     {
         surfaceEffector2D.speed = 0;
         yield return new WaitForSeconds(1.5f);
+        _audioSource.enabled = false;
         UIManager.instance.YouLosePanel();
         yield return new WaitForSeconds(8f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
