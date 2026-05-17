@@ -19,6 +19,8 @@ public class AudioController : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        float savedVolume = PlayerPrefs.GetFloat("EffectVolume",0.3f);
+        _audioSource.volume = savedVolume;
     }
     
     public void PlayFlipEffect() 

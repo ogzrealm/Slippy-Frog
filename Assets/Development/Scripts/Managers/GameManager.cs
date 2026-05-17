@@ -7,6 +7,8 @@ public class GameManager : MonoBehaviour
     public static GameManager instance;
     [SerializeField] private SurfaceEffector2D surfaceEffector2D;
     private AudioSource _audioSource;
+    private float gameVolume;
+    private OptionsMenu optionsMenu;
     private void Awake()
     {
         if(instance!=null) 
@@ -20,6 +22,10 @@ public class GameManager : MonoBehaviour
     private void Start()
     {
         _audioSource = GetComponent<AudioSource>();
+        float savedVolume = PlayerPrefs.GetFloat("BGVolume", 1f);
+        _audioSource.volume = savedVolume;
+        
+        
     }
 
     public void FinishLevel()
