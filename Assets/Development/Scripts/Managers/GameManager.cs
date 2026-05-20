@@ -1,5 +1,6 @@
 using UnityEngine;
 using System.Collections;
+using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
 
 public class GameManager : MonoBehaviour
@@ -24,8 +25,11 @@ public class GameManager : MonoBehaviour
         _audioSource = GetComponent<AudioSource>();
         float savedVolume = PlayerPrefs.GetFloat("BGVolume", 1f);
         _audioSource.volume = savedVolume;
-        
-        
+    }
+
+    private void Update()
+    {
+        ReturnToMenu();
     }
 
     public void FinishLevel()
@@ -54,6 +58,13 @@ public class GameManager : MonoBehaviour
         UIManager.instance.YouLosePanel();
         yield return new WaitForSeconds(8f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+    }
+    private void ReturnToMenu()
+    {
+        if (Keyboard.current.escapeKey.wasPressedThisFrame)
+        {
+            SceneManager.LoadScene("menu");
+        }
     }
     
     

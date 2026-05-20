@@ -23,7 +23,7 @@ public class PlayerControl : MonoBehaviour
         baseTorque = torqueStr;
     }
 
-    private void Update()
+    private void FixedUpdate()
     {
         Movement();
         FlipTracker();

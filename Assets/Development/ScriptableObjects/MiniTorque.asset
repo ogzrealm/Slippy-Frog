@@ -14,5 +14,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: Assembly-CSharp::PowerUp_SO
   powerUpColor: {r: 0.69803923, g: 0.69803923, b: 0.69803923, a: 1}
   powerName: Torque
-  powerBoost: 2
+  powerBoost: 20
   powerTime: 3
