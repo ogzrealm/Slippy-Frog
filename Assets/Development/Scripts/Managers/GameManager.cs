@@ -38,7 +38,7 @@ public class GameManager : MonoBehaviour
         surfaceEffector2D.speed = 0;
         
         yield return new WaitForSeconds(1);
-        Debug.Log("Next Level");
+        SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
 
     public void GameOver()
@@ -55,5 +55,6 @@ public class GameManager : MonoBehaviour
         yield return new WaitForSeconds(8f);
         SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
     }
+    
     
 }

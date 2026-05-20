@@ -13,8 +13,8 @@ public class FinishLine : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            GameManager.instance.FinishLevel();
             _player.isPlayerCanRotate = false;
+            GameManager.instance.FinishLevel();
         }
     }
 }

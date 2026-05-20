@@ -7,7 +7,7 @@ public class OptionsMenu : MonoBehaviour
     [SerializeField] private Slider bgSlider;
     [SerializeField] private Slider effectSlider;
 
-    private void Start()
+private void Start()
     {
         SetBGVolume();
         SetEffectVolume();
@@ -41,4 +41,5 @@ public class OptionsMenu : MonoBehaviour
         PlayerPrefs.SetFloat("EffectVolume",volume);
         PlayerPrefs.Save();
     }
+    
 }
