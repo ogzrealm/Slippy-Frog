@@ -7,7 +7,7 @@ A 2D runner game built with Unity where you help a frog survive on a slippery su
 ## 🎮 Gameplay
 
 - The surface constantly moves forward
-- Tap/click to make the frog jump
+- Press A-D to make flips
 - Avoid falling off the edge
 - Survive as long as possible to complete levels
 
