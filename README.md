@@ -67,7 +67,7 @@ Volume settings are saved using `PlayerPrefs`, meaning:
    ```bash
    git clone https://github.com/ogzrealm/Slippy-Frog.git
    ```
-2. Open the project in **Unity 2022+**
+2. Open the project in **Unity 6+**
 3. Open the `MainMenu` scene from the Scenes folder
 4. Press **Play** in the Unity Editor
 
