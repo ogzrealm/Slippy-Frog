@@ -1,6 +1,6 @@
 # 🐸 Slippy Frog
 
-A 2D endless runner game built with Unity where you help a frog survive on a slippery surface — jump, dodge, and don't fall off!
+A 2D runner game built with Unity where you help a frog survive on a slippery surface — jump, dodge, and don't fall off!
 
 ---
 
